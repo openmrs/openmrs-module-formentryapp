@@ -36,6 +36,16 @@ public class FormEntryUIService {
 		new AppFrameworkActivator().contextRefreshed();
 	}
 	
+	@Transactional
+	public void purgeFormExtension(Form form, Extension extension) {
+		FormResource formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+		if (formResource != null) {
+			formService.purgeFormResource(formResource);
+		}
+		
+		new AppFrameworkActivator().contextRefreshed();
+	}
+	
 	@Transactional(readOnly = true)
 	public List<Extension> getFormExtensions(Form form) {
 		List<Extension> extensions = new ArrayList<Extension>();

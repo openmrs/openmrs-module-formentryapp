@@ -1,5 +1,6 @@
 package org.openmrs.module.formentryui;
 
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasItem;
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
@@ -56,6 +57,21 @@ public class FormEntryUIFunctionalTest extends BaseModuleContextSensitiveTest {
 	    assertThat(extensions, hasItem(extension));
 	    Extension formExtension = extensions.get(0);
 		assertThat(formExtension.getLabel(), is(extension.getLabel()));
+	}
+	
+	@Test
+	public void shouldPurgeExistingExtension() {
+		Form form = formService.getForm(1);
+		
+		Extension extension = newMockExtension();
+		
+		formEntryUIService.saveFormExtension(form, extension);
+		
+		formEntryUIService.purgeFormExtension(form, extension);
+		
+		List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", "referenceapplication.form.one");
+		
+	    assertThat(extensions, is(empty()));
 	}
 
 	private Extension newMockExtension() {
