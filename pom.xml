@@ -3,59 +3,55 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.openmrs.module</groupId>
-	<artifactId>formentryui</artifactId>
+	<artifactId>formentryapp</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
-	<name>Form Entry UI Module</name>
+	<name>Form Entry App Module</name>
 	<description>Adds forms to OpenMRS 2.x</description>
-	<url>https://wiki.openmrs.org/display/docs/Form+Entry+UI+Module+Module</url>
-	
+	<url>https://wiki.openmrs.org/display/docs/Form+Entry+App+Module</url>
+
 	<developers>
 		<developer>
 			<name>OpenMRS</name>
 		</developer>
 	</developers>
-	
+
 	<organization>
 		<name>OpenMRS</name>
 		<url>http://openmrs.org</url>
 	</organization>
 
 	<scm>
-		<connection>scm:svn:https://svn.openmrs.org/openmrs-modules/formentryui/trunk/</connection>
-		<developerConnection>scm:svn:https://svn.openmrs.org/openmrs-modules/formentryui/trunk/</developerConnection>
-		<url>https://svn.openmrs.org/openmrs-modules/formentryui/trunk/</url>
+		<connection></connection>
+		<developerConnection></developerConnection>
+		<url></url>
 	</scm>
 
 	<modules>
 		<module>api</module>
 		<module>omod</module>
 	</modules>
-	
+
 	<properties>
 		<openMRSVersion>1.9.8</openMRSVersion>
 		<appframeworkVersion>2.2-SNAPSHOT</appframeworkVersion>
+		<uiframeworkVersion>3.2</uiframeworkVersion>
+		<uicommonsVersion>1.0</uicommonsVersion>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 	<dependencyManagement>
 		<dependencies>
-		
-			<!--
-			Libraries to add as dependencies with compile or runtime scope:
-			Find matching dependencies in the maven central repository.
-			<dependency>
-				<groupId>org.other.library</groupId>
-				<artifactId>library-name</artifactId>
-				<version>library.version</version>
-				<scope>compile</scope>
-			</dependency>
-			-->
-			
-			
+
+			<!-- Libraries to add as dependencies with compile or runtime scope: Find 
+				matching dependencies in the maven central repository. <dependency> <groupId>org.other.library</groupId> 
+				<artifactId>library-name</artifactId> <version>library.version</version> 
+				<scope>compile</scope> </dependency> -->
+
+
 
 			<!-- Begin OpenMRS core -->
-			
+
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
@@ -71,7 +67,7 @@
 				<type>jar</type>
 				<scope>provided</scope>
 			</dependency>
-						
+
 			<dependency>
 				<groupId>org.openmrs.api</groupId>
 				<artifactId>openmrs-api</artifactId>
@@ -79,7 +75,7 @@
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.web</groupId>
 				<artifactId>openmrs-web</artifactId>
@@ -87,7 +83,7 @@
 				<type>test-jar</type>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.test</groupId>
 				<artifactId>openmrs-test</artifactId>
@@ -95,54 +91,68 @@
 				<type>pom</type>
 				<scope>test</scope>
 			</dependency>
-			
+
 			<dependency>
 				<groupId>org.openmrs.module</groupId>
 				<artifactId>appframework-api</artifactId>
 				<version>${appframeworkVersion}</version>
 				<scope>provided</scope>
 			</dependency>
-						
+
+			<dependency>
+				<groupId>org.openmrs.module</groupId>
+				<artifactId>uiframework-api</artifactId>
+				<version>${uiframeworkVersion}</version>
+				<type>jar</type>
+				<scope>provided</scope>
+			</dependency>
+
 			<!-- End OpenMRS core -->
 
 		</dependencies>
 	</dependencyManagement>
-	
+
 	<dependencies>
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
 		</dependency>
-				
+
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
 			<type>test-jar</type>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
 			<type>pom</type>
 			<scope>test</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>appframework-api</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>org.openmrs.module</groupId>
+			<artifactId>uiframework-api</artifactId>
 			<scope>provided</scope>
 		</dependency>
 	</dependencies>

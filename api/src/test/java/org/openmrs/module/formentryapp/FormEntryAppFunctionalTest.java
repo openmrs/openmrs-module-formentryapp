@@ -1,4 +1,4 @@
-package org.openmrs.module.formentryui;
+package org.openmrs.module.formentryapp;
 
 import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.Matchers.hasItem;
@@ -12,14 +12,15 @@ import org.openmrs.Form;
 import org.openmrs.api.FormService;
 import org.openmrs.module.appframework.domain.Extension;
 import org.openmrs.module.appframework.service.AppFrameworkService;
+import org.openmrs.module.formentryapp.FormEntryAppService;
 import org.openmrs.test.BaseModuleContextSensitiveTest;
 import org.springframework.beans.factory.annotation.Autowired;
 
 
-public class FormEntryUIFunctionalTest extends BaseModuleContextSensitiveTest {
+public class FormEntryAppFunctionalTest extends BaseModuleContextSensitiveTest {
 	
 	@Autowired
-	FormEntryUIService formEntryUIService;
+	FormEntryAppService formEntryUIService;
 	
 	@Autowired
 	FormService formService;

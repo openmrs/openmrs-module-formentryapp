@@ -1,4 +1,4 @@
-package org.openmrs.module.formentryui;
+package org.openmrs.module.formentryapp;
 
 import java.io.IOException;
 

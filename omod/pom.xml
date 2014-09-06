@@ -4,14 +4,14 @@
 
 	<parent>
 		<groupId>org.openmrs.module</groupId>
-		<artifactId>formentryui</artifactId>
+		<artifactId>formentryapp</artifactId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 
-	<artifactId>formentryui-omod</artifactId>
+	<artifactId>formentryapp-omod</artifactId>
 	<packaging>jar</packaging>
-	<name>Form Entry UI Module OMOD</name>
-	<description>OMOD project for FormEntryUI</description>
+	<name>Form Entry App Module OMOD</name>
+	<description>OMOD project for FormEntryApp</description>
 
 	<dependencies>
 

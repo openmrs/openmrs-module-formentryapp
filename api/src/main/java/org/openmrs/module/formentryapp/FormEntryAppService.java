@@ -1,4 +1,4 @@
-package org.openmrs.module.formentryui;
+package org.openmrs.module.formentryapp;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -14,7 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class FormEntryUIService {
+public class FormEntryAppService {
 	
 	private final String UI_EXTENSION_RESOURCE_PREFIX = "uiextension:";
 	
