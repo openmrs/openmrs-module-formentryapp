@@ -9,14 +9,20 @@ import java.util.List;
 import java.util.Set;
 
 import org.openmrs.Form;
+import org.openmrs.Privilege;
+import org.openmrs.api.UserService;
 import org.openmrs.module.Extension;
 import org.openmrs.module.ModuleFactory;
 import org.openmrs.module.web.FormEntryContext;
 import org.openmrs.module.web.extension.FormEntryHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
 public class FormManager {
+	
+	@Autowired
+	UserService userService;
 	
 	final Set<String> SUPPORTED_MODULES = new HashSet<String>(Arrays.asList("htmlformentry", "xforms"));
 	
@@ -35,11 +41,17 @@ public class FormManager {
 	}
 	
 	public List<String> getUILocations() {
-		List<String> uiLocations = new ArrayList<String>();
-		
-		
-		
-		return uiLocations;
+		return Arrays.asList("patientDashboard.overallActions", "patientDashboard.visitActions");
+	}
+	
+	public List<String> getRequiredPrivileges() {
+		List<String> privileges = new ArrayList<String>();
+		for(Privilege privilege: userService.getAllPrivileges()) {
+			if (privilege.getName().startsWith("Task:")) {
+				privileges.add(privilege.getName());
+			}
+		}
+		return privileges;
 	}
 	
 	public List<Form> getSupportedForms() {

@@ -1,0 +1,18 @@
+[
+    {
+        "id": "formentryapp.forms",
+        "description": "formentryapp.forms.description",
+        "order": 10,
+        "extensions": [
+            {
+                "id": "${project.parent.groupId}.${project.parent.artifactId}.forms.homepageLink",
+                "extensionPointId": "org.openmrs.referenceapplication.homepageLink",
+                "type": "link",
+                "label": "formentryapp.manageforms",
+                "url": "formentryapp/forms.page?app=formentryapp.forms",
+                "icon": "icon-paste",
+                "requiredPrivilege": "App: formentryapp.forms"
+            }
+        ]
+    }
+]

@@ -23,8 +23,13 @@ public class FormEntryAppService {
 
 	@Transactional
 	public void saveFormExtension(Form form, Extension extension) {
-		FormResource formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+		FormResource formResource = null;
+		if (extension.getId() != null) {
+			formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+		}
 		if (formResource == null) {
+			extension.setId(extension.getExtensionPointId() + ".form." + form.getId());
+			
 			formResource = new FormResource();
 			formResource.setForm(form);
 			formResource.setName(UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
@@ -58,5 +63,17 @@ public class FormEntryAppService {
         }
 		
 		return extensions;
+	}
+	
+	@Transactional(readOnly = true)
+	public Extension getFormExtension(Form form, String extensionId) {
+		List<Extension> extensions = getFormExtensions(form);
+		for (Extension existingExtension : extensions) {
+	        if (existingExtension.getId().equals(extensionId)) {
+	        	return existingExtension;
+	        }
+        }
+		
+		return null;
 	}
 }
