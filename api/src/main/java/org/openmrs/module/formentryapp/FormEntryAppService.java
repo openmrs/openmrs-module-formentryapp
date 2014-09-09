@@ -26,7 +26,9 @@ public class FormEntryAppService {
 			formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
 		}
 		if (formResource == null) {
-			extension.setId(extension.getExtensionPointId() + ".form." + form.getId());
+			if (extension.getId() == null) {
+				extension.setId(extension.getExtensionPointId() + ".form." + form.getId());
+			}
 			
 			formResource = new FormResource();
 			formResource.setForm(form);

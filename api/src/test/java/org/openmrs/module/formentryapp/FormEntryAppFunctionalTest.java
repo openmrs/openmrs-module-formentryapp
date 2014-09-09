@@ -36,7 +36,7 @@ public class FormEntryAppFunctionalTest extends BaseModuleContextSensitiveTest {
 	    
 	    formEntryUIService.saveFormExtension(form, extension);
 	    
-	    List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", "referenceapplication.form.one");
+	    List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", extension.getId());
 	    
 	    assertThat(extensions, hasItem(extension));
 	}
@@ -53,7 +53,7 @@ public class FormEntryAppFunctionalTest extends BaseModuleContextSensitiveTest {
 	
 		formEntryUIService.saveFormExtension(form, extension);
 		
-		List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", "referenceapplication.form.one");
+		List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", extension.getId());
 		
 	    assertThat(extensions, hasItem(extension));
 	    Extension formExtension = extensions.get(0);
@@ -70,14 +70,13 @@ public class FormEntryAppFunctionalTest extends BaseModuleContextSensitiveTest {
 		
 		formEntryUIService.purgeFormExtension(form, extension);
 		
-		List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", "referenceapplication.form.one");
+		List<Extension> extensions = appFrameworkService.getExtensionsById("patientDashboard.visitActions", extension.getId());
 		
 	    assertThat(extensions, is(empty()));
 	}
 
 	private Extension newMockExtension() {
 	    Extension extension = new Extension();
-		extension.setId("referenceapplication.form.one");
 		extension.setExtensionPointId("patientDashboard.visitActions");
 		extension.setType("link");
 		extension.setLabel("referenceapplication.form.one.title");
