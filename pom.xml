@@ -21,12 +21,6 @@
 		<url>http://openmrs.org</url>
 	</organization>
 
-	<scm>
-		<connection></connection>
-		<developerConnection></developerConnection>
-		<url></url>
-	</scm>
-
 	<modules>
 		<module>api</module>
 		<module>omod</module>
@@ -181,6 +175,26 @@
 			</plugins>
 		</pluginManagement>
 	</build>
+	
+	<scm>
+        <connection>scm:git:https://github.com/rkorytkowski/openmrs-module-formentryapp</connection>
+        <developerConnection>scm:git:https://github.com/rkorytkowski/openmrs-module-formentryapp</developerConnection>
+        <url>https://github.com/rkorytkowski/openmrs-module-formentryapp</url>
+		<tag>HEAD</tag>
+	</scm>
+	
+	<distributionManagement>
+		<repository>
+			<id>openmrs-repo-modules</id>
+			<name>Modules</name>
+			<url>http://mavenrepo.openmrs.org/nexus/content/repositories/modules</url>
+		</repository>
+        <snapshotRepository>
+            <id>openmrs-repo-snapshots</id>
+            <name>OpenMRS Snapshots</name>
+            <url>http://mavenrepo.openmrs.org/nexus/content/repositories/snapshots</url>
+        </snapshotRepository>
+	</distributionManagement>
 
 	<repositories>
 		<repository>
