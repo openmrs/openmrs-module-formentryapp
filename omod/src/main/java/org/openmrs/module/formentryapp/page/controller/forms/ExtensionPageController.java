@@ -1,5 +1,8 @@
 package org.openmrs.module.formentryapp.page.controller.forms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.Extension;
@@ -33,20 +36,13 @@ public class ExtensionPageController {
 		model.put("formTechnology", manager.getFormTechnology(form));
 		model.put("uiLocations", manager.getUILocations());
 		model.put("privileges", manager.getRequiredPrivileges());
+		model.put("displayStyles", manager.getDisplayStyles(form));
 		
 		return null;
 	}
 	
-	public String delete(@RequestParam("formId") Form form, @RequestParam("deleteExtensionId") String extensionId,
-			  @SpringBean("formEntryAppService") FormEntryAppService service) {
-		Extension extension = service.getFormExtension(form, extensionId);
-		service.purgeFormExtension(form, extension);
-		
-		return "redirect:" + FormsPageController.PAGE_URL;
-	}
-	
 	public String post(@BindParams("extensionForm") ExtensionForm extensionForm,
-	        @SpringBean("formEntryAppService") FormEntryAppService service) {
+	        @SpringBean("formEntryAppService") FormEntryAppService service, @SpringBean("formManager") FormManager manager) {
 		Extension extension = null;
 		if (extensionForm.getId() != null) {
 			extension = service.getFormExtension(extensionForm.getForm(), extensionForm.getId());
@@ -58,8 +54,9 @@ public class ExtensionPageController {
 		extensionForm.copyTo(extension);
 		
 		extension.setType("link");
-		//TODO: set to correct URL
-		extension.setUrl("about:blank");
+		Map<String, String> options = new HashMap<String, String>();
+		options.put("displayStyle", extensionForm.getDisplayStyle());
+		extension.setUrl(manager.getFormUrl(extensionForm.getForm(), options));
 		
 		service.saveFormExtension(extensionForm.getForm(), extension);
 		

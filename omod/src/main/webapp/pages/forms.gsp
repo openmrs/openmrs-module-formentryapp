@@ -24,14 +24,17 @@
 		<% forms.each { f -> %>
 			<tr id="form-${ f.key.name }">
 				<td>${ f.key.name }</td>
-				<td>${ f.key.description }</td>
+				<td>${ f.key.description ?: '-' }</td>
 				<td>${ f.key.version }</td>
 				<td>${ f.key.published }</td>
 				<td>
 				<% f.value.each { extension -> %>
-				<p>${extension.extensionPointId} <a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a> 
+				<p style="text-align: center">${ui.message("formentryapp." + extension.extensionPointId)}<br />
+				<a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a>
+				<a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.delete") }</a>
+				</p>
 				<% } %>
-				<a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a>
+				<p><a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a></p>
 				</td>
 			</tr>
 		<% } %>

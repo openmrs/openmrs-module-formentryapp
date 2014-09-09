@@ -4,6 +4,7 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
+        { label: "${ui.message("formentryapp.manageforms")}", link: "${ ui.pageLink("formentryapp", "forms?app=formentryapp.forms") }"},
         { label: "${ ui.message("formentryapp.addform")}"}
     ];
 </script>
@@ -24,16 +25,21 @@
 <% 
 uiLocations.each { uiLocation ->
 %>
-<option <% if (uiLocation.equals(extensionForm.uiLocation)) { %> selected <% } %> >${uiLocation}</option>
+<option <% if (uiLocation.equals(extensionForm.uiLocation)) { %> selected <% } %> value="${uiLocation}">${ui.message("formentryapp." + uiLocation)}</option>
 <%
 }
 %>
 </select>
 </p>
 
-<% if (formTechnology.equals("htmlformentry")) { %>
+<% if (!displayStyles.isEmpty()) { %>
 <p>${ui.message("formentryapp.displaystyle")}</p>
-<p><select name="extensionForm.displayStyle"><option>Standard</option></select></p>
+<p><select name="extensionForm.displayStyle">
+<% displayStyles.each { displayStyle -> %>
+<option <% if (displayStyle.equals(extensionForm.displayStyle)) { %> selected <% } %> >${displayStyle}</option>
+<% } %>
+</select>
+</p>
 <% } %>
 
 <p>${ui.message("formentryapp.labeltext")}</p>

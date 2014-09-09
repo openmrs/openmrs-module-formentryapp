@@ -11,7 +11,6 @@ import org.openmrs.module.appframework.AppFrameworkActivator;
 import org.openmrs.module.appframework.domain.Extension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class FormEntryAppService {
@@ -21,7 +20,6 @@ public class FormEntryAppService {
 	@Autowired
 	FormService formService;
 
-	@Transactional
 	public void saveFormExtension(Form form, Extension extension) {
 		FormResource formResource = null;
 		if (extension.getId() != null) {
@@ -41,7 +39,6 @@ public class FormEntryAppService {
 		new AppFrameworkActivator().contextRefreshed();
 	}
 	
-	@Transactional
 	public void purgeFormExtension(Form form, Extension extension) {
 		FormResource formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
 		if (formResource != null) {
@@ -51,7 +48,6 @@ public class FormEntryAppService {
 		new AppFrameworkActivator().contextRefreshed();
 	}
 	
-	@Transactional(readOnly = true)
 	public List<Extension> getFormExtensions(Form form) {
 		List<Extension> extensions = new ArrayList<Extension>();
 		
@@ -65,7 +61,6 @@ public class FormEntryAppService {
 		return extensions;
 	}
 	
-	@Transactional(readOnly = true)
 	public Extension getFormExtension(Form form, String extensionId) {
 		List<Extension> extensions = getFormExtensions(form);
 		for (Extension existingExtension : extensions) {

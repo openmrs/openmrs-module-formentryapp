@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.openmrs.Form;
@@ -44,9 +45,21 @@ public class FormManager {
 		return Arrays.asList("patientDashboard.overallActions", "patientDashboard.visitActions");
 	}
 	
+	public String getFormUrl(Form form, Map<String, String> options) {
+		String formTechnology = getFormTechnology(form);
+		if ("htmlformentry".equals(formTechnology)) {
+			String displayStyle = options.get("displayStyle");
+			String url = "htmlformentryui/htmlform/enterHtmlFormWith" + displayStyle
+			        + "Ui.page?patientId={{patient.uuid}}&visitId={{visit.uuid}}&formUuid=";
+			return url + form.getUuid();
+		}
+		
+		return "http://about:blank";
+	}
+	
 	public List<String> getRequiredPrivileges() {
 		List<String> privileges = new ArrayList<String>();
-		for(Privilege privilege: userService.getAllPrivileges()) {
+		for (Privilege privilege : userService.getAllPrivileges()) {
 			if (privilege.getName().startsWith("Task:")) {
 				privileges.add(privilege.getName());
 			}
@@ -86,5 +99,16 @@ public class FormManager {
 		}
 		
 		return null;
+	}
+	
+	public List<String> getDisplayStyles(Form form) {
+		List<String> styles = new ArrayList<String>();
+		String formTechnology = getFormTechnology(form);
+		if ("htmlformentry".equals(formTechnology)) {
+			styles.add("Standard");
+			styles.add("Simple");
+		}
+		
+		return styles;
 	}
 }
