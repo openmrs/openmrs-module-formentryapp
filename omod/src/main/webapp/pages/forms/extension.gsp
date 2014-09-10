@@ -58,7 +58,7 @@ uiLocations.each { uiLocation ->
 </p>
 
 <p>${ui.message("formentryapp.order")}</p>
-<p><input type="text" name="extensionForm.order" value="15" value="${extensionForm.order}"/></p>
+<p><input type="text" name="extensionForm.order" value="${extensionForm.order}"/></p>
 
 <p>${ui.message("formentryapp.showif")}</p>
 <p><input type="text" name="extensionForm.showIf" value="${extensionForm.showIf}"/></p>
