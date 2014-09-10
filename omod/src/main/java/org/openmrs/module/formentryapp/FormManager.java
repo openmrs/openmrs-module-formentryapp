@@ -54,7 +54,7 @@ public class FormManager {
 			return url + form.getUuid();
 		} else if ("xforms".equals(formTechnology)) {
 			String url = "xforms/formentry/xformEntry.page?target=xformentry&formId=" + form.getFormId()
-			        + "&patientId={{patient.id}}&visitId={{visit.id}}&refappui=true";
+			        + "&patientId={{patient.patientId}}&visitId={{visit.id}}&refappui=true";
 			return url;
 		}
 		
