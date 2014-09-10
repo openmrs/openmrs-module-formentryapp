@@ -27,6 +27,7 @@ public class ExtensionPageController {
 			extensionForm.copyFrom(extension);
 		} else {
 			//Set defaults
+			extensionForm.setId("");
 			extensionForm.setLabel(form.getName());
 			extensionForm.setIcon("icon-pencil");
 			extensionForm.setOrder(15);

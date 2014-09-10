@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Form;
 import org.openmrs.FormResource;
 import org.openmrs.api.FormService;
@@ -15,24 +16,24 @@ import org.springframework.stereotype.Service;
 @Service
 public class FormEntryAppService {
 	
-	private final String UI_EXTENSION_RESOURCE_PREFIX = "uiextension:";
+	private final String FORMENTRYAPP_RESOURCE_PREFIX = "formentryapp.";
 	
 	@Autowired
 	FormService formService;
 
 	public void saveFormExtension(Form form, Extension extension) {
 		FormResource formResource = null;
-		if (extension.getId() != null) {
-			formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+		if (!StringUtils.isBlank(extension.getId())) {
+			formResource = formService.getFormResource(form, FORMENTRYAPP_RESOURCE_PREFIX + extension.getId());
 		}
 		if (formResource == null) {
-			if (extension.getId() == null) {
+			if (StringUtils.isBlank(extension.getId())) {
 				extension.setId(extension.getExtensionPointId() + ".form." + form.getId());
 			}
 			
 			formResource = new FormResource();
 			formResource.setForm(form);
-			formResource.setName(UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+			formResource.setName(FORMENTRYAPP_RESOURCE_PREFIX + extension.getId());
 			formResource.setDatatypeClassname(ExtensionFormResource.class.getName());
 		}
 		formResource.setValue(extension);
@@ -42,7 +43,7 @@ public class FormEntryAppService {
 	}
 	
 	public void purgeFormExtension(Form form, Extension extension) {
-		FormResource formResource = formService.getFormResource(form, UI_EXTENSION_RESOURCE_PREFIX + extension.getId());
+		FormResource formResource = formService.getFormResource(form, FORMENTRYAPP_RESOURCE_PREFIX + extension.getId());
 		if (formResource != null) {
 			formService.purgeFormResource(formResource);
 		}
