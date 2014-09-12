@@ -1,9 +1,12 @@
 package org.openmrs.module.formentryapp.page.controller;
 
+import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import org.codehaus.jackson.JsonNode;
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.AppDescriptor;
 import org.openmrs.module.appframework.domain.Extension;
@@ -21,13 +24,28 @@ public class FormsPageController {
 			@SpringBean("formEntryAppService") FormEntryAppService service) {
 		List<Form> supportedForms = manager.getSupportedForms();
 		
+		Set<String> builtInForms = getBuiltInForms(app);
+		
 		Map<Form, List<Extension>> forms = new LinkedHashMap<Form, List<Extension>>();
 		for (Form supportedForm : supportedForms) {
-	        List<Extension> extensions = service.getFormExtensions(supportedForm);
-	        forms.put(supportedForm, extensions);
+			if (!builtInForms.contains(supportedForm.getUuid())) {
+				List<Extension> extensions = service.getFormExtensions(supportedForm);
+				forms.put(supportedForm, extensions);
+			}
         }
 		model.put("forms", forms);
 		
 		return null;
 	}
+
+	private Set<String> getBuiltInForms(AppDescriptor app) {
+	    Set<String> builtInFormUuids = new HashSet<String>();
+		JsonNode builtInForms = app.getConfig().get("builtInForms");
+		if (builtInForms != null) {
+			for (JsonNode builtInForm : builtInForms) {
+	            builtInFormUuids.add(builtInForm.getTextValue());
+            }
+		}
+		return builtInFormUuids;
+    }
 }
