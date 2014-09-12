@@ -24,7 +24,7 @@ public class FormManager {
 	
 	@Autowired
 	UserService userService;
-	
+
 	final Set<String> SUPPORTED_MODULES = new HashSet<String>(Arrays.asList("htmlformentry", "xforms"));
 	
 	public List<FormEntryHandler> getSupportedFormEntryHandlers() {
@@ -64,7 +64,7 @@ public class FormManager {
 	public List<String> getRequiredPrivileges() {
 		List<String> privileges = new ArrayList<String>();
 		for (Privilege privilege : userService.getAllPrivileges()) {
-			if (privilege.getName().startsWith("Task:")) {
+			if (privilege.getName().startsWith("Task:") || privilege.getName().startsWith("App:")) {
 				privileges.add(privilege.getName());
 			}
 		}

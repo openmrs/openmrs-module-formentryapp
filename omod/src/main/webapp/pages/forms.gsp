@@ -29,8 +29,8 @@
 				<td>${ f.key.published }</td>
 				<td>
 				<% f.value.each { extension -> %>
-				<p style="text-align: center">${ui.message("formentryapp." + extension.extensionPointId)}<br />
-				<a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a>
+				<p style="white-space: nowrap;">${ui.message("formentryapp." + extension.extensionPointId)} 
+				<a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a> 
 				<a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.delete") }</a>
 				</p>
 				<% } %>

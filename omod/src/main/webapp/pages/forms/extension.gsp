@@ -9,19 +9,19 @@
     ];
 </script>
 
-<h3>${ ui.message("formentryapp.addform") }</h3>
-
-<h4>${ui.message("Form.fieldType")}: ${form.name}</h4>
+<h2>${form.name} - ${ ui.message("formentryapp.addform") }</h2>
 
 <form method="post" action="${ ui.pageLink("formentryapp", "forms/extension") }">
 <input type="hidden" name="extensionForm.form" value="${form.id}" />
 <input type="hidden" name="extensionForm.id" value="${extensionForm.id}" />
 
-<p>${ui.message("formentryapp.formtechnology")}: ${formTechnology}</p>
-
-<p>${ui.message("formentryapp.uilocation")} </p>
 <p>
-<select name="extensionForm.uiLocation">
+<label name="extensionForm.formTechnology">${ui.message("formentryapp.formtechnology")}: ${formTechnology}<label>
+</p>
+
+<p>
+<label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}</label>
+<select id="extensionForm.uiLocation" name="extensionForm.uiLocation">
 <% 
 uiLocations.each { uiLocation ->
 %>
@@ -33,8 +33,9 @@ uiLocations.each { uiLocation ->
 </p>
 
 <% if (!displayStyles.isEmpty()) { %>
-<p>${ui.message("formentryapp.displaystyle")}</p>
-<p><select name="extensionForm.displayStyle">
+<p>
+<label name="extensionForm.displayStyle">${ui.message("formentryapp.displaystyle")}</label>
+<select id="extensionForm.displayStyle" name="extensionForm.displayStyle">
 <% displayStyles.each { displayStyle -> %>
 <option <% if (displayStyle.equals(extensionForm.displayStyle)) { %> selected <% } %> >${displayStyle}</option>
 <% } %>
@@ -42,26 +43,26 @@ uiLocations.each { uiLocation ->
 </p>
 <% } %>
 
-<p>${ui.message("formentryapp.labeltext")}</p>
-<p><input type="text" name="extensionForm.label" value="${extensionForm.label}"/></p>
+<p><label name="extensionForm.label">${ui.message("formentryapp.labeltext")}</label>
+<input type="text" id="extensionForm.label" name="extensionForm.label" value="${extensionForm.label}"/></p>
 
-<p>${ui.message("formentryapp.icon")}</p>
-<p><input type="text" name="extensionForm.icon" value="${extensionForm.icon}"/></p>
+<p><label name="extensionForm.icon">${ui.message("formentryapp.icon")}</label>
+<input type="text" id="extensionForm.icon" name="extensionForm.icon" value="${extensionForm.icon}"/></p>
 
-<p>${ui.message("formentryapp.privilege")}</p>
-<p>
-<select name="extensionForm.requiredPrivilege">
+<p><label name="extensionForm.requiredPrivilege">${ui.message("formentryapp.privilege")}</label>
+<select id="extensionForm.requiredPrivilege" name="extensionForm.requiredPrivilege">
+<option></option>
 <% privileges.each { privilege -> %>
 <option <% if (privilege.equals(extensionForm.requiredPrivilege)) { %> selected <% } %> >${privilege}</option>
 <% } %>
 </select>
 </p>
 
-<p>${ui.message("formentryapp.order")}</p>
-<p><input type="text" name="extensionForm.order" value="${extensionForm.order}"/></p>
+<p><label name="extensionForm.order">${ui.message("formentryapp.order")}</label>
+<input type="text" id="extensionForm.order" name="extensionForm.order" value="${extensionForm.order}"/></p>
 
-<p>${ui.message("formentryapp.showif")}</p>
-<p><input type="text" name="extensionForm.showIf" value="${extensionForm.showIf}"/></p>
+<p><label name="extensionForm.showIf">${ui.message("formentryapp.showif")}</label>
+<input type="text" id="extensionForm.showIf" name="extensionForm.showIf" value="${extensionForm.showIf}"/></p>
 
 <p>
 <input type="button" onclick="window.location='${ ui.pageLink("formentryapp", "forms?app=formentryapp.forms") }'" value="${ui.message("general.cancel")}"/>

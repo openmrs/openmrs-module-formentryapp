@@ -29,7 +29,7 @@ public class ExtensionPageController {
 			//Set defaults
 			extensionForm.setId("");
 			extensionForm.setLabel(form.getName());
-			extensionForm.setIcon("icon-pencil");
+			extensionForm.setIcon("icon-file");
 			extensionForm.setOrder(15);
 			extensionForm.setShowIf("");
 		}
