@@ -24,6 +24,9 @@ public class FormManager {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	FormEntryAppService appService;
 
 	final Set<String> SUPPORTED_MODULES = new HashSet<String>(Arrays.asList("htmlformentry", "xforms"));
 	
@@ -41,8 +44,15 @@ public class FormManager {
 		return handlers;
 	}
 	
-	public List<String> getUILocations() {
-		return Arrays.asList("patientDashboard.overallActions", "patientDashboard.visitActions");
+	public List<String> getUILocations(Form form) {
+		List<String> list = new ArrayList<String>();
+		list.add("patientDashboard.overallActions");
+		list.add("patientDashboard.visitActions");
+		for (org.openmrs.module.appframework.domain.Extension extension : appService.getFormExtensions(form)) {
+			list.remove(extension.getExtensionPointId());
+        }
+		
+		return list;
 	}
 	
 	public String getFormUrl(Form form, Map<String, String> options) {

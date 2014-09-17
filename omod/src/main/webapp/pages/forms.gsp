@@ -4,6 +4,7 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
+        { label: "${ui.message("referenceapplication.configuremetadata")}", link: "${ ui.pageLink("referenceapplication", "configureMetadata?app=referenceapplication.configuremetadata") }"},
         { label: "${ ui.message("formentryapp.manageforms")}"}
     ];
 </script>
@@ -33,8 +34,11 @@
 				<a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a> 
 				<a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.delete") }</a>
 				</p>
-				<% } %>
+				<% } 
+				if (addUiLocations[f.key.id]) {
+				%>
 				<p><a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a></p>
+				<% } %>
 				</td>
 			</tr>
 		<% } %>

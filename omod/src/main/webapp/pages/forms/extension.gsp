@@ -4,6 +4,7 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
+        { label: "${ui.message("referenceapplication.configuremetadata")}", link: "${ ui.pageLink("referenceapplication", "configureMetadata?app=referenceapplication.configuremetadata") }"},
         { label: "${ui.message("formentryapp.manageforms")}", link: "${ ui.pageLink("formentryapp", "forms?app=formentryapp.forms") }"},
         { label: "${ ui.message("formentryapp.addform")}"}
     ];
@@ -20,13 +21,20 @@
 </p>
 
 <p>
-<label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}</label>
+<label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}: 
+<% if (extensionForm.id) { %>
+${ui.message("formentryapp." + extensionForm.uiLocation)}
+<input type="hidden" id="extensionForm.uiLocation" name="extensionForm.uiLocation" value="${extensionForm.uiLocation}" />
+</label>
+<% } else { %>
+</label>
 <select id="extensionForm.uiLocation" name="extensionForm.uiLocation">
 <% 
-uiLocations.each { uiLocation ->
+	uiLocations.each { uiLocation ->
 %>
-<option <% if (uiLocation.equals(extensionForm.uiLocation)) { %> selected <% } %> value="${uiLocation}">${ui.message("formentryapp." + uiLocation)}</option>
+<option value="${uiLocation}">${ui.message("formentryapp." + uiLocation)}</option>
 <%
+	}
 }
 %>
 </select>
@@ -59,7 +67,7 @@ uiLocations.each { uiLocation ->
 </p>
 
 <p><label name="extensionForm.order">${ui.message("formentryapp.order")}</label>
-<input type="text" id="extensionForm.order" name="extensionForm.order" value="${extensionForm.order}"/></p>
+<input type="number" id="extensionForm.order" name="extensionForm.order" value="${extensionForm.order}" required/></p>
 
 <p><label name="extensionForm.showIf">${ui.message("formentryapp.showif")}</label>
 <input type="text" id="extensionForm.showIf" name="extensionForm.showIf" value="${extensionForm.showIf}"/></p>

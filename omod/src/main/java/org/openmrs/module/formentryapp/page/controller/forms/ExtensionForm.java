@@ -1,5 +1,8 @@
 package org.openmrs.module.formentryapp.page.controller.forms;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.Extension;
 
@@ -103,6 +106,7 @@ public class ExtensionForm {
 		requiredPrivilege = extension.getRequiredPrivilege();
 		order = extension.getOrder();
 		showIf = extension.getRequire();
+		displayStyle = (String) extension.getExtensionParams().get("displayStyle");
 	}
 	
 	public void copyTo(Extension extension) {
@@ -113,5 +117,8 @@ public class ExtensionForm {
 		extension.setRequiredPrivilege(requiredPrivilege);
 		extension.setOrder(order);
 		extension.setRequire(showIf);
+		Map<String,Object> extensionParams = new HashMap<String, Object>();
+		extensionParams.put("displayStyle", displayStyle);
+		extension.setExtensionParams(extensionParams);
 	}
 }

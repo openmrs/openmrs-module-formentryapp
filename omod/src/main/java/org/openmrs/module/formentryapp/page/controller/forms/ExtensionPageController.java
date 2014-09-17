@@ -24,7 +24,7 @@ public class ExtensionPageController {
 		model.put("extensionForm", extensionForm);
 		if (!StringUtils.isBlank(extensionId)) {
 			Extension extension = service.getFormExtension(form, extensionId);
-			extensionForm.copyFrom(extension);
+			extensionForm.copyFrom(extension);			
 		} else {
 			//Set defaults
 			extensionForm.setId("");
@@ -33,9 +33,10 @@ public class ExtensionPageController {
 			extensionForm.setOrder(15);
 			extensionForm.setShowIf("");
 		}
+		
+		model.put("uiLocations", manager.getUILocations(form));
 		model.put("form", form);
-		model.put("formTechnology", manager.getFormTechnology(form));
-		model.put("uiLocations", manager.getUILocations());
+		model.put("formTechnology", manager.getFormTechnology(form));	
 		model.put("privileges", manager.getRequiredPrivileges());
 		model.put("displayStyles", manager.getDisplayStyles(form));
 		

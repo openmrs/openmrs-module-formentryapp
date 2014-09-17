@@ -1,5 +1,6 @@
 package org.openmrs.module.formentryapp.page.controller;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -27,13 +28,18 @@ public class FormsPageController {
 		Set<String> builtInForms = getBuiltInForms(app);
 		
 		Map<Form, List<Extension>> forms = new LinkedHashMap<Form, List<Extension>>();
+		Map<Integer, Boolean> addUiLocations = new HashMap<Integer, Boolean>();
 		for (Form supportedForm : supportedForms) {
 			if (!builtInForms.contains(supportedForm.getUuid())) {
 				List<Extension> extensions = service.getFormExtensions(supportedForm);
 				forms.put(supportedForm, extensions);
+				
+				List<String> uiLocations = manager.getUILocations(supportedForm);
+				addUiLocations.put(supportedForm.getId(), !uiLocations.isEmpty());
 			}
         }
 		model.put("forms", forms);
+		model.put("addUiLocations", addUiLocations);
 		
 		return null;
 	}
