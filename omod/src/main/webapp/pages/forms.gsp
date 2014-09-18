@@ -30,14 +30,21 @@
 				<td>${ f.key.published }</td>
 				<td>
 				<% f.value.each { extension -> %>
-				<p style="white-space: nowrap;">${ui.message("formentryapp." + extension.extensionPointId)} 
-				<a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.edit") }</a> 
-				<a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">${ ui.message("general.delete") }</a>
+				<p style="white-space: nowrap;">
+                    ${ui.message("formentryapp." + extension.extensionPointId)}
+                    <a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">
+                        <i class="icon-pencil edit-action"></i>
+                    </a>
+                    <a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">
+                        <i class="icon-remove delete-action"></i>
+                    </a>
 				</p>
 				<% } 
 				if (addUiLocations[f.key.id]) {
 				%>
-				<p><a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a></p>
+				<p>
+                    <a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a>
+                </p>
 				<% } %>
 				</td>
 			</tr>
