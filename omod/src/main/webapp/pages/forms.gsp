@@ -22,6 +22,13 @@
 		</tr>
 	</thead>
 	<tbody>
+        <% if (!forms) { %>
+            <tr>
+                <td colspan="5">
+                    ${ ui.message("emr.none") }
+                </td>
+            </tr>
+        <% } %>
 		<% forms.each { f -> %>
 			<tr id="form-${ f.key.name }">
 				<td>${ f.key.name }</td>
