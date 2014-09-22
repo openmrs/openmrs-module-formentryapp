@@ -4,7 +4,7 @@
 <script type="text/javascript">
     var breadcrumbs = [
         { icon: "icon-home", link: '/' + OPENMRS_CONTEXT_PATH + '/index.htm' },
-        { label: "${ui.message("referenceapplication.configuremetadata")}", link: "${ ui.pageLink("referenceapplication", "configureMetadata?app=referenceapplication.configuremetadata") }"},
+        { label: "${ui.message("referenceapplication.configuremetadata")}", link: "${ ui.pageLink("coreapps", "configuremetadata/configureMetadata") }"},
         { label: "${ui.message("formentryapp.manageforms")}", link: "${ ui.pageLink("formentryapp", "forms?app=formentryapp.forms") }"},
         { label: "${ ui.message("formentryapp.addform")}"}
     ];
