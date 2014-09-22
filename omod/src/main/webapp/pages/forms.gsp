@@ -36,22 +36,30 @@
 				<td>${ f.key.version }</td>
 				<td>${ f.key.published }</td>
 				<td>
-				<% f.value.each { extension -> %>
+				<% if (editFormLocations[f.key.id]) {
+					f.value.each { extension -> %>
+					
 				<p style="white-space: nowrap;">
                     ${ui.message("formentryapp." + extension.extensionPointId)}
-                    <a href="forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}">
-                        <i class="icon-pencil edit-action"></i>
-                    </a>
-                    <a href="forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}">
-                        <i class="icon-remove delete-action"></i>
-                    </a>
+                    <i class="icon-pencil edit-action" onclick="location.href='forms/extension.page?formId=${f.key.id}&extensionId=${extension.id}'"></i>
+                    <i class="icon-remove delete-action" onclick="location.href='forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}'"></i>
 				</p>
-				<% } 
-				if (addUiLocations[f.key.id]) {
-				%>
+				
+					<% if (addUiLocations[f.key.id]) { %>
+					
 				<p>
                     <a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a>
                 </p>
+                
+					<% } %>
+					
+				<%	}
+				} else { %>
+				
+				<p style="white-space: nowrap;">
+					${ui.message("formentryapp.formLocked")} <i class="icon-lock"></i>
+				</p>
+				
 				<% } %>
 				</td>
 			</tr>

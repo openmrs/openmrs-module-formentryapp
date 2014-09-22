@@ -29,17 +29,19 @@ public class FormsPageController {
 		
 		Map<Form, List<Extension>> forms = new LinkedHashMap<Form, List<Extension>>();
 		Map<Integer, Boolean> addUiLocations = new HashMap<Integer, Boolean>();
+		Map<Integer, Boolean> editFormLocations = new HashMap<Integer, Boolean>();
 		for (Form supportedForm : supportedForms) {
-			if (!builtInForms.contains(supportedForm.getUuid())) {
-				List<Extension> extensions = service.getFormExtensions(supportedForm);
-				forms.put(supportedForm, extensions);
-				
-				List<String> uiLocations = manager.getUILocations(supportedForm);
-				addUiLocations.put(supportedForm.getId(), !uiLocations.isEmpty());
-			}
+			editFormLocations.put(supportedForm.getId(), !builtInForms.contains(supportedForm.getUuid()));
+			
+			List<Extension> extensions = service.getFormExtensions(supportedForm);
+			forms.put(supportedForm, extensions);
+			
+			List<String> uiLocations = manager.getUILocations(supportedForm);
+			addUiLocations.put(supportedForm.getId(), !uiLocations.isEmpty());
         }
 		model.put("forms", forms);
 		model.put("addUiLocations", addUiLocations);
+		model.put("editFormLocations", editFormLocations);
 		
 		return null;
 	}
