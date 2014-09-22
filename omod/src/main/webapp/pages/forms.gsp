@@ -45,15 +45,16 @@
                     <i class="icon-remove delete-action" onclick="location.href='forms/deleteExtension.page?formId=${f.key.id}&extensionId=${extension.id}'"></i>
 				</p>
 				
-					<% if (addUiLocations[f.key.id]) { %>
+					<% } 
+					
+					if (addUiLocations[f.key.id]) { %>
 					
 				<p>
                     <a href="forms/extension.page?formId=${f.key.id}">${ ui.message("general.add") }</a>
                 </p>
                 
-					<% } %>
+					<% }
 					
-				<%	}
 				} else { %>
 				
 				<p style="white-space: nowrap;">
