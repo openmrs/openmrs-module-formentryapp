@@ -113,6 +113,8 @@
 		            <configuration>
 		                  <!-- refapp distro contains SNAPSHOT dependencies -->
 		                  <allowTimestampedSnapshots>true</allowTimestampedSnapshots>
+		                  <autoVersionSubmodules>true</autoVersionSubmodules>
+		                  <tagNameFormat>@{project.version}</tagNameFormat>
 		            </configuration>
 		        </plugin>
 			</plugins>
