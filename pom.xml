@@ -126,7 +126,7 @@
 	
 	<scm>
 	    <connection>scm:git:git@github.com:openmrs/openmrs-module-formentryapp.git</connection>
-	    <developerConnection>scm:git@github.com:openmrs/openmrs-module-formentryapp.git</developerConnection>
+	    <developerConnection>scm:git:git@github.com:openmrs/openmrs-module-formentryapp.git</developerConnection>
 	    <url>https://github.com/openmrs/openmrs-module-formentryapp.git</url>
 	</scm>
 	
