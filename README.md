@@ -1,2 +1,2 @@
-openmrs-module-formentryui
-==========================
+openmrs-module-formentryapp
+===========================
