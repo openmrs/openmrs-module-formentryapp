@@ -70,6 +70,12 @@
 			<scope>test</scope>
 		</dependency>
 		
+		<dependency>
+            <groupId>org.openmrs.module</groupId>
+            <artifactId>legacyui-omod</artifactId>
+            <scope>provided</scope>
+        </dependency>
+		
 		<!-- End OpenMRS core -->
 
 	</dependencies>
