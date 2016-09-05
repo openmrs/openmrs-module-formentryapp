@@ -10,7 +10,7 @@
     ];
 </script>
 
-<h2>${ui.escapeJs(form.name)} - ${ ui.message("formentryapp.addform") }</h2>
+<h2>${ui.encodeHtmlContent(form.name)} - ${ ui.message("formentryapp.addform") }</h2>
 
 <form method="post" action="${ ui.pageLink("formentryapp", "forms/extension") }">
 <input type="hidden" name="extensionForm.form" value="${form.id}" />
@@ -52,7 +52,7 @@ ${ui.message("formentryapp." + extensionForm.uiLocation)}
 <% } %>
 
 <p><label name="extensionForm.label">${ui.message("formentryapp.labeltext")}</label>
-<input type="text" id="extensionForm.label" name="extensionForm.label" value="${ui.escapeJs(extensionForm.label)}"/></p>
+<input type="text" id="extensionForm.label" name="extensionForm.label" value="${ui.encodeHtmlContent(extensionForm.label)}"/></p>
 
 <p><label name="extensionForm.icon">${ui.message("formentryapp.icon")}</label>
 <input type="text" id="extensionForm.icon" name="extensionForm.icon" value="${extensionForm.icon}"/></p>

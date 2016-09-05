@@ -30,10 +30,10 @@
             </tr>
         <% } %>
 		<% forms.each { f -> %>
-			<tr id="form-${ ui.escapeJs(f.key.name) }">
-				<td>${ ui.escapeJs(f.key.name) }</td>
-				<td>${ ui.escapeJs(f.key.description ?: '-') }</td>
-				<td>${ ui.escapeJs(f.key.version) }</td>
+			<tr id="form-${ ui.encodeHtmlContent(f.key.name) }">
+				<td>${ ui.encodeHtmlContent(f.key.name) }</td>
+				<td>${ ui.encodeHtmlContent(f.key.description ?: '-') }</td>
+				<td>${ ui.encodeHtmlContent(f.key.version) }</td>
 				<td>${ f.key.published }</td>
 				<td>
 				<% if (editFormLocations[f.key.id]) {
