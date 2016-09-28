@@ -28,63 +28,57 @@
 	<properties>
         <distro.groupId>org.openmrs.distro</distro.groupId>
         <distro.artifactId>referenceapplication</distro.artifactId>
-        <distro.version>2.5-SNAPSHOT</distro.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <openMRSVersion>1.9.7</openMRSVersion>
         <appframeworkVersion>2.2.1</appframeworkVersion>
         <uiframeworkVersion>3.2</uiframeworkVersion>
+        <legacyuiVersion>1.1</legacyuiVersion>
 	</properties>
-
-	<dependencyManagement>
-		<dependencies>
-            <!-- Importing versions from refapp distro -->
-            <dependency>
-                <groupId>${distro.groupId}</groupId>
-                <artifactId>${distro.artifactId}</artifactId>
-                <version>${distro.version}</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-	</dependencyManagement>
 
 	<dependencies>
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
+			<version>${openMRSVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
+			<version>${openMRSVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.api</groupId>
 			<artifactId>openmrs-api</artifactId>
 			<type>test-jar</type>
+			<version>${openMRSVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.web</groupId>
 			<artifactId>openmrs-web</artifactId>
 			<type>test-jar</type>
+			<version>${openMRSVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.test</groupId>
 			<artifactId>openmrs-test</artifactId>
 			<type>pom</type>
+			<version>${openMRSVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>appframework-api</artifactId>
+			<version>${appframeworkVersion}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.openmrs.module</groupId>
 			<artifactId>uiframework-api</artifactId>
+			<version>${uiframeworkVersion}</version>
 		</dependency>
 	</dependencies>
 
