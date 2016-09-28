@@ -42,6 +42,7 @@
 			<artifactId>openmrs-api</artifactId>
 			<type>jar</type>
 			<version>${openMRSVersion}</version>
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>
@@ -49,6 +50,7 @@
 			<artifactId>openmrs-web</artifactId>
 			<type>jar</type>
 			<version>${openMRSVersion}</version>
+			<scope>provided</scope>
 		</dependency>
 		
 		<dependency>
