@@ -48,6 +48,7 @@ public class FormManager {
 		List<String> list = new ArrayList<String>();
 		list.add("patientDashboard.overallActions");
 		list.add("patientDashboard.visitActions");
+		list.add("registrationSummary.overallActions");
 		for (org.openmrs.module.appframework.domain.Extension extension : appService.getFormExtensions(form)) {
 			list.remove(extension.getExtensionPointId());
         }
