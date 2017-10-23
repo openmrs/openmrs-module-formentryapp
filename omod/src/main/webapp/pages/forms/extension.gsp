@@ -13,23 +13,23 @@
 <h2>${ui.encodeHtmlContent(form.name)} - ${ ui.message("formentryapp.addform") }</h2>
 
 <form method="post" action="${ ui.pageLink("formentryapp", "forms/extension") }">
-<input type="hidden" name="extensionForm.form" value="${form.id}" />
-<input type="hidden" name="extensionForm.id" value="${extensionForm.id}" />
+<input type="hidden" name="extensionForm.form" value="${ui.escapeAttribute(form.id)}" />
+<input type="hidden" name="extensionForm.id" value="${ui.escapeAttribute(extensionForm.id)}" />
 
 <p>
 <label name="extensionForm.formTechnology">${ui.message("formentryapp.formtechnology")}: ${formTechnology}<label>
 </p>
 
 <p>
-<label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}: 
+<label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}:
 <% if (extensionForm.id) { %>
 ${ui.message("formentryapp." + extensionForm.uiLocation)}
-<input type="hidden" id="extensionForm.uiLocation" name="extensionForm.uiLocation" value="${extensionForm.uiLocation}" />
+<input type="hidden" id="extensionForm.uiLocation" name="extensionForm.uiLocation" value="${ui.escapeAttribute(extensionForm.uiLocation)}" />
 </label>
 <% } else { %>
 </label>
 <select id="extensionForm.uiLocation" name="extensionForm.uiLocation">
-<% 
+<%
 	uiLocations.each { uiLocation ->
 %>
 <option value="${uiLocation}">${ui.message("formentryapp." + uiLocation)}</option>
@@ -55,7 +55,7 @@ ${ui.message("formentryapp." + extensionForm.uiLocation)}
 <input type="text" id="extensionForm.label" name="extensionForm.label" value="${ui.encodeHtmlContent(extensionForm.label)}"/></p>
 
 <p><label name="extensionForm.icon">${ui.message("formentryapp.icon")}</label>
-<input type="text" id="extensionForm.icon" name="extensionForm.icon" value="${extensionForm.icon}"/></p>
+<input type="text" id="extensionForm.icon" name="extensionForm.icon" value="${ui.encodeHtmlContent(extensionForm.icon)}"/></p>
 
 <p><label name="extensionForm.requiredPrivilege">${ui.message("formentryapp.privilege")}</label>
 <select id="extensionForm.requiredPrivilege" name="extensionForm.requiredPrivilege">
@@ -67,10 +67,10 @@ ${ui.message("formentryapp." + extensionForm.uiLocation)}
 </p>
 
 <p><label name="extensionForm.order">${ui.message("formentryapp.order")}</label>
-<input type="number" id="extensionForm.order" name="extensionForm.order" value="${extensionForm.order}" required/></p>
+<input type="number" id="extensionForm.order" name="extensionForm.order" value="${ui.escapeAttribute(extensionForm.order)}" required/></p>
 
 <p><label name="extensionForm.showIf">${ui.message("formentryapp.showif")}</label>
-<input type="text" id="extensionForm.showIf" name="extensionForm.showIf" value="${extensionForm.showIf}"/></p>
+<input type="text" id="extensionForm.showIf" name="extensionForm.showIf" value="${ui.escapeAttribute(extensionForm.showIf)}"/></p>
 
 <p>
 <input type="button" onclick="window.location='${ ui.pageLink("formentryapp", "forms?app=formentryapp.forms") }'" value="${ui.message("general.cancel")}"/>
