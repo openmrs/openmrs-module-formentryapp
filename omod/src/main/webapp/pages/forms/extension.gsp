@@ -13,8 +13,8 @@
 <h2>${ui.encodeHtmlContent(form.name)} - ${ ui.message("formentryapp.addform") }</h2>
 
 <form method="post" action="${ ui.pageLink("formentryapp", "forms/extension") }">
-<input type="hidden" name="extensionForm.form" value="${ui.escapeAttribute(form.id)}" />
-<input type="hidden" name="extensionForm.id" value="${ui.escapeAttribute(extensionForm.id)}" />
+<input type="hidden" name="extensionForm.form" value="${form.id}" />
+<input type="hidden" name="extensionForm.id" value="${extensionForm.id}" />
 
 <p>
 <label name="extensionForm.formTechnology">${ui.message("formentryapp.formtechnology")}: ${formTechnology}<label>
@@ -24,7 +24,7 @@
 <label name="extensionForm.uiLocation">${ui.message("formentryapp.uilocation")}:
 <% if (extensionForm.id) { %>
 ${ui.message("formentryapp." + extensionForm.uiLocation)}
-<input type="hidden" id="extensionForm.uiLocation" name="extensionForm.uiLocation" value="${ui.escapeAttribute(extensionForm.uiLocation)}" />
+<input type="hidden" id="extensionForm.uiLocation" name="extensionForm.uiLocation" value="${extensionForm.uiLocation}" />
 </label>
 <% } else { %>
 </label>
@@ -67,7 +67,7 @@ ${ui.message("formentryapp." + extensionForm.uiLocation)}
 </p>
 
 <p><label name="extensionForm.order">${ui.message("formentryapp.order")}</label>
-<input type="number" id="extensionForm.order" name="extensionForm.order" value="${ui.escapeAttribute(extensionForm.order)}" required/></p>
+<input type="number" id="extensionForm.order" name="extensionForm.order" value="${extensionForm.order}" required/></p>
 
 <p><label name="extensionForm.showIf">${ui.message("formentryapp.showif")}</label>
 <input type="text" id="extensionForm.showIf" name="extensionForm.showIf" value="${ui.escapeAttribute(extensionForm.showIf)}"/></p>
