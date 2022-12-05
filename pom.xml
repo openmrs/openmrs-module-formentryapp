@@ -4,7 +4,7 @@
 
 	<groupId>org.openmrs.module</groupId>
 	<artifactId>formentryapp</artifactId>
-	<version>1.4.3</version>
+	<version>1.4.4-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>Form Entry App Module</name>
 	<description>Adds forms to OpenMRS 2.x</description>
@@ -139,7 +139,7 @@
 	    <connection>scm:git:git@github.com:openmrs/openmrs-module-formentryapp.git</connection>
 	    <developerConnection>scm:git:git@github.com:openmrs/openmrs-module-formentryapp.git</developerConnection>
 	    <url>https://github.com/openmrs/openmrs-module-formentryapp.git</url>
-	  <tag>1.4.3</tag>
+	  <tag>HEAD</tag>
   </scm>
 	
 	<distributionManagement>
