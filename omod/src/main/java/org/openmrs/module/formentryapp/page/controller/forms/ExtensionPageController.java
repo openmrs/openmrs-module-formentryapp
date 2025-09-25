@@ -1,8 +1,10 @@
 package org.openmrs.module.formentryapp.page.controller.forms;
 
+import java.net.URLDecoder;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Form;
 import org.openmrs.module.appframework.domain.Extension;
@@ -44,7 +46,7 @@ public class ExtensionPageController {
 	}
 	
 	public String post(@BindParams("extensionForm") ExtensionForm extensionForm,
-	        @SpringBean("formEntryAppService") FormEntryAppService service, @SpringBean("formManager") FormManager manager) {
+	        @SpringBean("formEntryAppService") FormEntryAppService service, @SpringBean("formManager") FormManager manager) throws Exception {
 		Extension extension = null;
 		if (extensionForm.getId() != null) {
 			extension = service.getFormExtension(extensionForm.getForm(), extensionForm.getId());
@@ -54,6 +56,9 @@ public class ExtensionPageController {
 		}
 		
 		extensionForm.copyTo(extension);
+		if (StringUtils.isNotBlank(extension.getRequire())) {
+			extension.setRequire(StringEscapeUtils.unescapeHtml4(extension.getRequire()));
+		}
 		
 		extension.setType("link");
 		Map<String, String> options = new HashMap<String, String>();
