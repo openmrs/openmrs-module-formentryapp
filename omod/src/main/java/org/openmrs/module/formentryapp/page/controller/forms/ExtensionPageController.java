@@ -45,7 +45,7 @@ public class ExtensionPageController {
 	}
 	
 	public String post(@BindParams("extensionForm") ExtensionForm extensionForm,
-	        @SpringBean("formEntryAppService") FormEntryAppService service, @SpringBean("formManager") FormManager manager) throws Exception {
+	        @SpringBean("formEntryAppService") FormEntryAppService service, @SpringBean("formManager") FormManager manager) {
 		Extension extension = null;
 		if (extensionForm.getId() != null) {
 			extension = service.getFormExtension(extensionForm.getForm(), extensionForm.getId());
