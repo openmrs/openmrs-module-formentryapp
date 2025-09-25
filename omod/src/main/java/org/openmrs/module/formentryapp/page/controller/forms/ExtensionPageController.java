@@ -1,9 +1,5 @@
 package org.openmrs.module.formentryapp.page.controller.forms;
 
-import java.net.URLDecoder;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.apache.commons.lang3.StringEscapeUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openmrs.Form;
@@ -15,6 +11,9 @@ import org.openmrs.ui.framework.annotation.BindParams;
 import org.openmrs.ui.framework.annotation.SpringBean;
 import org.openmrs.ui.framework.page.PageModel;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class ExtensionPageController {
 	
