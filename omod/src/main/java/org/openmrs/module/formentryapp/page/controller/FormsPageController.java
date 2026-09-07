@@ -2,6 +2,7 @@ package org.openmrs.module.formentryapp.page.controller;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,7 @@ public class FormsPageController {
 	
 	public static final String PAGE_URL = "formentryapp/forms.page?app=formentryapp.forms";
 	
+
 	public String get(@RequestParam("app") AppDescriptor app, PageModel model, @SpringBean("formManager") FormManager manager,
 			@SpringBean("formEntryAppService") FormEntryAppService service) {
 		List<Form> supportedForms = manager.getSupportedForms();
@@ -30,7 +32,11 @@ public class FormsPageController {
 		Map<Form, List<Extension>> forms = new LinkedHashMap<Form, List<Extension>>();
 		Map<Integer, Boolean> addUiLocations = new HashMap<Integer, Boolean>();
 		Map<Integer, Boolean> editFormLocations = new HashMap<Integer, Boolean>();
-		for (Form supportedForm : supportedForms) {
+		for (Iterator<Form> iterator = supportedForms.iterator(); iterator.hasNext();) {
+			Form supportedForm = iterator.next();
+			if (supportedForm.getRetired() == true) {
+				iterator.remove();
+			} else {
 			editFormLocations.put(supportedForm.getId(), !builtInForms.contains(supportedForm.getUuid()));
 			
 			List<Extension> extensions = service.getFormExtensions(supportedForm);
@@ -38,6 +44,7 @@ public class FormsPageController {
 			
 			List<String> uiLocations = manager.getUILocations(supportedForm);
 			addUiLocations.put(supportedForm.getId(), !uiLocations.isEmpty());
+			}
         }
 		model.put("forms", forms);
 		model.put("addUiLocations", addUiLocations);
